@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>R vs Stata</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="R.Andrés Castañeda" />
+    <meta name="date" content="2022-10-10" />
+    <script src="R_vs_Stata_files/header-attrs/header-attrs.js"></script>
+    <link href="R_vs_Stata_files/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="R_vs_Stata_files/tile-view/tile-view.js"></script>
+    <link href="R_vs_Stata_files/animate.css/animate.xaringan.css" rel="stylesheet" />
+    <link href="R_vs_Stata_files/tachyons/tachyons.min.css" rel="stylesheet" />
+    <link href="R_vs_Stata_files/panelset/panelset.css" rel="stylesheet" />
+    <script src="R_vs_Stata_files/panelset/panelset.js"></script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"bca2d00c743a4737b95bf124c36ae1bf","expires":14}</script>
+    <script src="R_vs_Stata_files/himalaya/himalaya.js"></script>
+    <script src="R_vs_Stata_files/js-cookie/js.cookie.js"></script>
+    <link href="R_vs_Stata_files/editable/editable.css" rel="stylesheet" />
+    <script src="R_vs_Stata_files/editable/editable.js"></script>
+    <script src="R_vs_Stata_files/clipboard/clipboard.min.js"></script>
+    <link href="R_vs_Stata_files/shareon/shareon.min.css" rel="stylesheet" />
+    <script src="R_vs_Stata_files/shareon/shareon.min.js"></script>
+    <link href="R_vs_Stata_files/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
+    <script src="R_vs_Stata_files/xaringanExtra-shareagain/shareagain.js"></script>
+    <script src="R_vs_Stata_files/fabric/fabric.min.js"></script>
+    <link href="R_vs_Stata_files/xaringanExtra-scribble/scribble.css" rel="stylesheet" />
+    <script src="R_vs_Stata_files/xaringanExtra-scribble/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
+    <script src="R_vs_Stata_files/freezeframe/freezeframe.min.js"></script>
+    <script src="R_vs_Stata_files/xaringanExtra-freezeframe/freezeframe-init.js"></script>
+    <script id="xaringanExtra-freezeframe-options" type="application/json">{"selector":"img[src$=\"gif\"]","trigger":"click","overlay":false,"responsive":true,"warnings":true}</script>
+    <script src="R_vs_Stata_files/xaringanExtra-progressBar/progress-bar.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="../custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: right middle
+
+
+
+
+
+
+<style>.xe__progress-bar__container {
+  top:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 7px;
+  background-color: #edcf8e;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+## R vs Stata
+
+R.Andrés Castañeda
+
+---
+
+class: center, middle
+## From Stata to R
+
+---
+
+class: center, middle
+## Why R?
+
+---
+## R vs Stata
+
+### .f4[Differences]
+
+* R is object oriented while Stata is action oriented:
+  + Classic example: Stata's `summarize` vs R's `summary()`
+  
+  + In Stata you declare what you want to do, while in R you usually declare the result you want to get
+
+--
+
+* R needs to load non-base commands (packages) at the beginning of each session
+  
+  + Imagine that in Stata you'd have to load a command installed with `ssc install` every time you'll use it in a new session
+  
+  + There is a way to bypass this
+
+---
+## R vs Stata
+
+### .f4[Differences]
+
+* R is less specialized:
+--
+more flexibility and more functionalities.
+
+--
+
+* R has a much broader network of users:
+
+  + More resources online, which makes using Google a lot easier. You'll never want to see Statalist again in your life!
+  
+  + Development of new features and bug fixes happen faster.
+
+
+---
+### Advantages of Stata
+
+- Stata is more specialized:
+--
+Some common but complex tasks are simpler
+
+--
+
+- Stata has wider adoption among micro-econometricians (though R adoption is steadily increasing). 
+
+--
+
+- The implementation of frames in Stata 16 has made everything easier
+
+--
+
+- Super intuitive
+
+--
+
+- It is getting better and better with each upgrade
+
+???
+Running a regression with clustered standard errors
+Analyzing survey data with weights
+
+Network externalities in your work environment.
+Development of new specialized techniques and tools could happen faster (e.g. ietoolkit).
+
+---
+## Advantages of R
+
+- R is a free and open source software!
+
+--
+
+- It allows you to have several datasets open simultaneously.
+    + No need to use `keep`, `preserve`, `restore`, or `tempfile` 
+--
+
+- It can run complex Geographic Information System (GIS) analyses.
+
+--
+
+- You can use it for web scrapping.
+
+--
+
+- You can run machine learning algorithms with it
+
+---
+## Advantages of R
+
+- You can create complex Markdown documents. This presentation, for example, is entirely done in R.
+    - Latex, slides, websites, books, reports, Word documents, PPT presentations, etc.
+
+--
+
+- It reads and works with no rectangular data
+
+--
+
+- You can create interactive dashboards and online applications with the Shiny package.
+
+---
+## Advantages of R
+
+- Help online is amazing!
+
+--
+
+- [RStudio](https://www.rstudio.com/) exists
+    + Everything is integrated. The interface, the data, the code, git, and the outcome.
+--
+
+- R is constantly updated and fixed.
+
+---
+## R vs Python
+
+.center[.f3[.light-red[Disclaimer: ]I don't know enough about Python to make a fair assessment]]
+
+---
+## R vs Python
+
+### .f4[In general]
+
+- Python and R were created with different objectives.
+
+  + Python was created as a general programming language
+  
+  + R was created for statistical analysis
+
+--
+
+- Over time both have moved slowly to the each other's side.
+
+--
+
+- You can find a "fair" comparison in this [PDF created by DataCamp](https://s3.amazonaws.com/assets.datacamp.com/email/other/Python+vs+R.pdf). 
+
+--
+
+   + .orange[I say "fair" because it is too general, and not specific for economists and social scientists.] 
+
+---
+## R vs Python
+
+- I Prefer R because it is designed for and by academics, not developers.
+
+--
+
+- If there is something that I need to do in Python, I just run Python from R, get the results, and keep working on R
+--
+(same thing with Stata). 
+
+--
+
+- Contrary to what some people say, I think R syntax is easier than Python's.
+
+--
+
+- Coding with `tidyverse` or `data.table` syntax make the work extremely easy.
+
+---
+## R vs Python
+
+- The whole `tidyverse` and RStudio tools are just amazing. There is nothing like that in Python!
+
+--
+
+- You should learn both! 
+
+---
+## ... BUT!
+
+If I were going to teach my kids one programming language, it will Python.
+
+---
+
+class: center, middle
+![](https://media.giphy.com/media/dILrAu24mU729pxPYN/giphy.gif)
+
+---
+
+## Well, because...
+
+--
+
+- If R keeps getting more popularity than R, it will be more attractive in their CVs. 
+
+--
+
+- It is a general programming language that allows them to create anything from scratch; not only useful for data analysis.
+
+--
+
+- I will teach them R, anyway...
+
+---
+
+class: center, middle
+## Everything you need to start working with R
+
+---
+
+## Installation
+
+You need R and RStudio installed in your computer:
+
+### Instructions
+
+* Please visit (https://cran.r-project.org) and select a Comprehensive R Archive Network (CRAN) mirror close to you.
+
+* To install RStudio, go to (https://www.rstudio.com/). .red[You need to install R first.]
+
+---
+layout:true
+
+## Data in R
+
+---
+
+### In Stata:
+
+* You can open __one dataset__ and perform operations that can change that dataset.
+
+* You can also have other things, such as matrices, macros and tempfiles, but they are secondary. __Most functions only use the main dataset__.
+
+* If you wish to do any non-permanent changes to your data, __you'll need to preserve the original data to keep it intact__.
+
+---
+
+### In R:
+
+__R__ works in a completely different way: 
+ 
+* You can load __as many datasets as you wish__ or your computer's memory allows
+
+* Operations will have lasting effects __only if you store them__
+
+---
+
+### In R:
+
+* Everything that exists in R's memory -- variables, datasets, functions -- __is an object__
+
+--
+
+* You could think of an object like a chunk of data with some properties that has a name by which you call it
+
+--
+
+* If you create an object, it's going to be stored in memory until you delete it or quit R
+
+--
+
+* Whenever you run anything you intend to use in the future, __you need to store it as an object__.
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "github",
+"highlightLines": true,
+"ratio": "16:9",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

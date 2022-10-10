@@ -1,0 +1,267 @@
+---
+title: "R vs Stata"
+subtitle: ""
+author: 
+  - "R.Andrés Castañeda"
+date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+    seal: false
+    css: [xaringan-themer.css, ../custom.css]
+    nature:
+      slideNumberFormat: "%current%"
+      highlightStyle: github
+      highlightLines: true
+      ratio: 16:9
+      countIncrementalSlides: false
+---
+
+class: right middle
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  fig.width = 9, fig.height = 3.5, fig.retina = 3,
+  out.width = "100%",
+  cache     = FALSE,
+  echo      = TRUE,
+  message   = FALSE, 
+  warning   = FALSE,
+  hiline    = TRUE
+)
+library(xaringanthemer)
+```
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+# packages
+here::i_am("R_vs_Stata.Rmd")
+library("here")
+# colors
+c1 <- "#2d3142"
+c2 <- "#edcf8e"
+c3 <- "#ef7b45"
+c4 <- "#aa4465"
+c5 <- "#9f9fad"
+gray  <- "#333333"
+blue  <- "#4466B0"
+black <- "#000000"
+colors <- c(c1 = c1, 
+            c2 = c2,
+            c3 = c3,
+            c4 = c4,
+            c5 = c5)
+# Set style
+style_duo(
+  # colors
+  primary_color   = c1,
+  secondary_color = c2,
+  header_color    = c3,
+  text_color      = c2,
+  text_bold_color = c5,
+  link_color      = c5,
+  colors          = colors,
+  # fonts
+  header_font_google  = google_font("Martel", "300", "400"),
+  text_font_google    = google_font("Lato"),
+  code_font_google    = google_font("Fira Mono")
+)
+```
+
+```{r xaringanExtra, echo = FALSE}
+xaringanExtra::use_xaringan_extra(
+  include = c("tile_view",
+              "animate_css",
+              "tachyons",
+              "panelset",
+              "share_again",
+              "scribble", 
+              "freezeframe", 
+              "editable")
+  )
+xaringanExtra::use_progress_bar(color = c2, 
+                                location = "top", 
+                                height = "7px")
+```
+
+## Preliminary notions
+R.Andrés Castañeda
+
+---
+
+## Syntax
+
+There are three main syntax
+
+- base
+
+- tidyverse
+
+- data.table
+
+
+---
+
+.f3[.red[Note: ]The rest of the training will be based on 
+
+- [advanced R](https://adv-r.hadley.nz/) by Hadley Wickham
+
+- [R for Data Science](https://r4ds.had.co.nz/) by Hadley Wickham & Garret Grolemund
+
+---
+
+## Objects and names
+(Almost) Everything in R is an object
+
+--
+
+In R, you create objects, which you can bind to a name 'x'.
+
+--
+
+.red[You do NOT create an object name 'x'.]
+
+--
+
+```{r bind, echo=TRUE, results="hide"}
+x <- c(1, 2, 3)
+y <- x
+```
+
+--
+
+```{r, echo = FALSE, out.width = NULL}
+knitr::include_graphics("https://github.com/hadley/adv-r/raw/master/diagrams/name-value/binding-2.png")
+```
+---
+## Vectors and functions
+
+A little simplistic, in R, 
+
+Vectors contain the information; the data. 
+
+--
+
+Functions are instructions for what to DO with the data. 
+
+---
+## Vectors
+
+There are two (well three) kind of vectors.
+
+```{r, echo=FALSE, out.width=NULL}
+knitr::include_graphics("https://github.com/hadley/adv-r/raw/master/diagrams/vectors/summary-tree.png")
+```
+
+--
+
+**Atomic vectors**: all elements must have the same type
+
+__lists__: elements can have different types.
+
+---
+## Atomic vectors
+.pull-left[
+Since atomic vectors require that all elements are of the same type, there are four types .light-blue[(six in reality, but you won't use the other two: raw and complex)]
+]
+.pull-right[
+```{r, echo=FALSE, out.width=NULL}
+knitr::include_graphics("https://github.com/hadley/adv-r/raw/master/diagrams/vectors/summary-tree-atomic.png")
+```
+]
+
+
+---
+## Examples of atomic vectors
+.pull-left[
+```{r}
+lgl_var <- c(TRUE, FALSE)
+int_var <- c(1L, 6L, 10L)
+dbl_var <- c(1, 2.5, 4.5)
+chr_var <- c("these are", "some strings")
+x <- matrix(1:6, nrow = 2, ncol = 3)
+```
+
+]
+.pull-right[
+Exlore `typeof` and `class`
+```{r echo=FALSE}
+knitr::include_app("https://rrmaximiliano.shinyapps.io/learnr-app/")
+```
+]
+---
+## Class of vectors (S3 object system)
+.pull-left[
+Classes are attributes of the vectors that inform the functions how to deal with
+the vector
+
+]
+.pull-right[
+```{r, echo=FALSE, out.width=450}
+knitr::include_graphics("https://github.com/hadley/adv-r/raw/master/diagrams/vectors/summary-tree-s3-1.png")
+```
+]
+
+---
+## List vectors
+In lists, elements can be of any type.
+```{r lists}
+l1 <- list(
+  1:3, 
+  "a", 
+  c(TRUE, FALSE, TRUE), 
+  c(2.3, 5.9)
+)
+typeof(l1)
+str(l1)
+```
+
+---
+## `data.frame`, a special kind of lists (..finally!)
+
+data frames are the kind of rectangular tables that you use in Stata
+```{r dataframe}
+df1 <- data.frame(x = 1:3, y = letters[1:3])
+typeof(df1)
+attributes(df1)
+```
+
+---
+## Better data.frames! `tibble` and `data.table`
+
+Base R `data.frame`s are a great idea, but a little old. By trying to do more, the end up doing less and frustrate the users.
+
+--
+
+You should move to `tibble`s and/or `data.table`s.
+
+--
+
+```{r tibble}
+library(tibble)    
+library(data.table)
+
+# Bad code on purpose
+tb <- tibble::tibble(x = 1:3, y = letters[1:3])
+dt <- data.table::data.table(x = 1:3, y = letters[1:3])
+class(tb)
+class(dt)
+```
+
+---
+
+class: center, middle
+## Hands on!
+---
+We will use the [gapminder](https://www.gapminder.org/) data.
+
+To make it easier to work with, we will use `df` as the name of the data rather than `gapminder`
+
+```{r, include=TRUE, results="hide"}
+# Load the data
+library("tidyverse") 
+library("data.table")
+library("gapminder")
+# Change name for convenience
+df <- gapminder
+```
