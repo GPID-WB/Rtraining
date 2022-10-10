@@ -35,7 +35,7 @@ library(xaringanthemer)
 
 ```{r xaringan-themer, include=FALSE, warning=FALSE}
 # packages
-here::i_am("R_vs_Stata.Rmd")
+here::i_am("preliminary_notions.Rmd")
 library("here")
 # colors
 c1 <- "#2d3142"
@@ -84,7 +84,8 @@ xaringanExtra::use_progress_bar(color = c2,
                                 height = "7px")
 ```
 
-## Preliminary notions
+## Preliminary notions of R
+
 R.Andrés Castañeda
 
 ---
@@ -102,9 +103,11 @@ There are three main syntax
 
 ---
 
-.f3[.red[Note: ]The rest of the training will be based on 
+class: middle 
 
-- [advanced R](https://adv-r.hadley.nz/) by Hadley Wickham
+.f3[.red[Note: ]The rest of the training will be based on ]
+
+- [Advanced R](https://adv-r.hadley.nz/) by Hadley Wickham
 
 - [R for Data Science](https://r4ds.had.co.nz/) by Hadley Wickham & Garret Grolemund
 
@@ -115,7 +118,7 @@ There are three main syntax
 
 --
 
-In R, you create objects, which you can bind to a name 'x'.
+In R, you create objects, which you can bind to a named 'x'.
 
 --
 
@@ -138,11 +141,14 @@ knitr::include_graphics("https://github.com/hadley/adv-r/raw/master/diagrams/nam
 
 A little simplistic, in R, 
 
+--
+
+
 Vectors contain the information; the data. 
 
 --
 
-Functions are instructions for what to DO with the data. 
+Functions are instructions of what to DO with the data. 
 
 ---
 ## Vectors
@@ -205,6 +211,9 @@ knitr::include_graphics("https://github.com/hadley/adv-r/raw/master/diagrams/vec
 ---
 ## List vectors
 In lists, elements can be of any type.
+
+.pull-left[
+
 ```{r lists}
 l1 <- list(
   1:3, 
@@ -212,19 +221,41 @@ l1 <- list(
   c(TRUE, FALSE, TRUE), 
   c(2.3, 5.9)
 )
+
+```
+
+]
+.pull-right[
+
+```{r list2}
 typeof(l1)
 str(l1)
 ```
+]
 
 ---
 ## `data.frame`, a special kind of lists (..finally!)
 
 data frames are the kind of rectangular tables that you use in Stata
+.pull-left[
 ```{r dataframe}
-df1 <- data.frame(x = 1:3, y = letters[1:3])
+df1 <- data.frame(x = 1:3, 
+                  y = c("a", "b", "c")
+                  )
+
 typeof(df1)
-attributes(df1)
+
 ```
+
+]
+.pull-right[
+
+```{r df2}
+class(df1)
+attributes(df1)
+
+```
+]
 
 ---
 ## Better data.frames! `tibble` and `data.table`
