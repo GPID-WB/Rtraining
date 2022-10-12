@@ -1,5 +1,5 @@
 ---
-title: "R vs Stata"
+title: "Preliminary Notions"
 subtitle: ""
 author: 
   - "R.Andrés Castañeda"
@@ -136,13 +136,34 @@ y <- x
 ```{r, echo = FALSE, out.width = NULL}
 knitr::include_graphics("https://github.com/hadley/adv-r/raw/master/diagrams/name-value/binding-2.png")
 ```
+
 ---
+
+## Syntactic Names
+
+--
+
+- A syntactic name must consist of letters10, digits, . and _ but can’t begin with _ or a digit. 
+
+--
+
+- You can't use any of the reserved words like `TRUE`, `NULL`, `if`, and `function` (see the complete list in `?Reserved`).
+
+--
+
+- A name that doesn’t follow these rules is a **non-syntactic** name; if you try to use them, you’ll get an error
+
+--
+
+- It's possible to override these rules and use any name, i.e., any sequence of characters, by surrounding it with backticks.
+
+---
+
 ## Vectors and functions
 
 A little simplistic, in R, 
 
 --
-
 
 Vectors contain the information; the data. 
 
@@ -195,6 +216,7 @@ Exlore `typeof` and `class`
 knitr::include_app("https://rrmaximiliano.shinyapps.io/learnr-app/")
 ```
 ]
+
 ---
 ## Class of vectors (S3 object system)
 .pull-left[
