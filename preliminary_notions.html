@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>R vs Stata</title>
+    <title>Preliminary Notions</title>
     <meta charset="utf-8" />
     <meta name="author" content="R.Andrés Castañeda" />
-    <meta name="date" content="2022-10-10" />
+    <meta name="date" content="2022-10-14" />
     <script src="preliminary_notions_files/header-attrs/header-attrs.js"></script>
     <link href="preliminary_notions_files/tile-view/tile-view.css" rel="stylesheet" />
     <script src="preliminary_notions_files/tile-view/tile-view.js"></script>
@@ -12,7 +12,7 @@
     <link href="preliminary_notions_files/tachyons/tachyons.min.css" rel="stylesheet" />
     <link href="preliminary_notions_files/panelset/panelset.css" rel="stylesheet" />
     <script src="preliminary_notions_files/panelset/panelset.js"></script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xfe2ddc98d3b4e85b9d8af3362dd3239","expires":14}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xefe870c983447779114417a2a9462ad","expires":14}</script>
     <script src="preliminary_notions_files/himalaya/himalaya.js"></script>
     <script src="preliminary_notions_files/js-cookie/js.cookie.js"></script>
     <link href="preliminary_notions_files/editable/editable.css" rel="stylesheet" />
@@ -99,11 +99,11 @@ class: middle
 
 --
 
-In R, you create objects, which you can bind to a named 'x'.
+In R, you create objects, which you can bind to a name 'x'.
 
 --
 
-.red[You do NOT create an object name 'x'.]
+.red[You do NOT create an object named 'x'.]
 
 --
 
@@ -116,13 +116,44 @@ y &lt;- x
 --
 
 ![](https://github.com/hadley/adv-r/raw/master/diagrams/name-value/binding-2.png)&lt;!-- --&gt;
+
 ---
+
+## Syntactic Names
+
+--
+
+- A syntactic name must consist of letters, digits, . and \_ but can’t begin with \_ or a digit.
+
+--
+
+- You can't use any of the reserved words like `TRUE`, `NULL`, `if`, and `function` (see the complete list in `?Reserved`).
+
+--
+
+- A name that doesn't follow these rules is a **non-syntactic** name; if you try to use them, you’ll get an error
+
+--
+
+- It's possible to override these rules and use any name, i.e., any sequence of characters, by surrounding it with backticks.
+
+
+```r
+`1+1` &lt;- 2
+`1+1`
+```
+
+```
+## [1] 2
+```
+
+---
+
 ## Vectors and functions
 
 A little simplistic, in R, 
 
 --
-
 
 Vectors contain the information; the data. 
 
@@ -132,6 +163,10 @@ Functions are instructions of what to DO with the data.
 
 ---
 ## Vectors
+
+A vector is a collection of elements.
+
+--
 
 There are two (well three) kind of vectors.
 
@@ -144,7 +179,7 @@ There are two (well three) kind of vectors.
 __lists__: elements can have different types.
 
 ---
-## Atomic vectors
+## Atomic vectors - `c()`
 .pull-left[
 Since atomic vectors require that all elements are of the same type, there are four types .light-blue[(six in reality, but you won't use the other two: raw and complex)]
 ]
@@ -167,9 +202,9 @@ x &lt;- matrix(1:6, nrow = 2, ncol = 3)
 
 ]
 .pull-right[
-Exlore `typeof` and `class`
 &lt;iframe src="https://rrmaximiliano.shinyapps.io/learnr-app/?showcase=0" width="100%" height="400px" data-external="1"&gt;&lt;/iframe&gt;
 ]
+
 ---
 ## Class of vectors (S3 object system)
 .pull-left[
@@ -182,7 +217,7 @@ the vector
 ]
 
 ---
-## List vectors
+## List vectors - `list()`
 In lists, elements can be of any type.
 
 .pull-left[
@@ -229,9 +264,11 @@ data frames are the kind of rectangular tables that you use in Stata
 .pull-left[
 
 ```r
-df1 &lt;- data.frame(x = 1:3, 
-                  y = c("a", "b", "c")
-                  )
+df1 &lt;- 
+  data.frame(
+    x = 1:3, 
+    y = c("a", "b", "c")
+    )
 
 typeof(df1)
 ```
@@ -287,6 +324,13 @@ library(data.table)
 # Bad code on purpose
 tb &lt;- tibble::tibble(x = 1:3, y = letters[1:3])
 dt &lt;- data.table::data.table(x = 1:3, y = letters[1:3])
+```
+
+---
+
+## Better data.frames! `tibble` and `data.table`
+
+```r
 class(tb)
 ```
 
@@ -307,19 +351,29 @@ class(dt)
 class: center, middle
 ## Hands on!
 ---
-We will use the [gapminder](https://www.gapminder.org/) data.
 
-To make it easier to work with, we will use `df` as the name of the data rather than `gapminder`
+I. What is the difference between `c(list(1:3), list(9)` and `list(list(1:3), list(9)`
+
+II. Is there any difference between these three ways of assignment?
 
 
 ```r
-# Load the data
-library("tidyverse") 
-library("data.table")
-library("gapminder")
-# Change name for convenience
-df &lt;- gapminder
+assign('a', c(10, 150, 30, 45, 20.3))
+a &lt;- c(10, 150, 30, 45, 20.3)
+a = c(10, 150, 30, 45, 20.3)
 ```
+
+III. The `dim()` function gets the dimension of an object. Why `dim(a)` is `NULL`?
+
+IV. Why `is.character(c('blue',10,'green',20))` is `TRUE`?
+
+---
+
+R comes with a variety of datasets to work with (Similar to `sysuse auto` in Stata). You can see all the datasets available by typing `library(help = "datasets")`.  
+
+V. In a `tibble` bound to the name `tb` add a column named `x` with the vector `rivers` from the internal `datasets`.
+
+---
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
