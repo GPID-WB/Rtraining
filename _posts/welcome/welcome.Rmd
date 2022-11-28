@@ -1,13 +1,10 @@
 ---
 title: "Welcome to R Training"
 description: |
-  Welcome to our new blog, R Training. We hope you enjoy 
-  reading what we have to say!
+  Welcome to R Training. This is site is intended to host the information of 
+  the GPID R training
 author:
-  - name: Nora Jones 
-    url: https://example.com/norajones
-    affiliation: Spacely Sprockets
-    affiliation_url: https://example.com/spacelysprokets
+  - name: R.Andres Castaneda
 date: 11-28-2022
 output:
   distill::distill_article:

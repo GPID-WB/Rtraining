@@ -1,0 +1,22 @@
+---
+title: Preliminary notions
+description: |
+  Básic concepts such as object, names, types, and class.
+author: R.Andres Castaneda
+date: '2022-11-28'
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+
+```{r embed-class01, echo=FALSE}
+xaringanExtra::embed_xaringan(url   = "slides/preliminary_notions.html",
+                              ratio = "16:9")
+```
+

@@ -1,19 +1,53 @@
 [
   {
-    "path": "posts/welcome/",
-    "title": "Welcome to R Training",
-    "description": "Welcome to our new blog, R Training. We hope you enjoy \nreading what we have to say!",
+    "path": "posts/preliminary-notions/",
+    "title": "Preliminary notions",
+    "description": "Básic concepts such as object, names, types, and class.",
     "author": [
       {
-        "name": "Nora Jones",
-        "url": "https://example.com/norajones"
+        "name": "R.Andres Castaneda",
+        "url": {}
+      }
+    ],
+    "date": "2022-11-28",
+    "categories": [],
+    "contents": "\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2022-11-28T16:17:11-05:00",
+    "input_file": {}
+  },
+  {
+    "path": "posts/r-vs-stata/",
+    "title": "R vs Stata",
+    "description": "Contrast between R and Stata.",
+    "author": [
+      {
+        "name": "R.Andres Castaneda",
+        "url": {}
+      }
+    ],
+    "date": "2022-11-28",
+    "categories": [],
+    "contents": "\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2022-11-28T16:11:24-05:00",
+    "input_file": {}
+  },
+  {
+    "path": "posts/welcome/",
+    "title": "Welcome to R Training",
+    "description": "Welcome to R Training. This is site is intended to host the information of \nthe GPID R training",
+    "author": [
+      {
+        "name": "R.Andres Castaneda",
+        "url": {}
       }
     ],
     "date": "2022-11-28",
     "categories": [],
     "contents": "\r\n\r\n\r\n\r\n",
     "preview": {},
-    "last_modified": "2022-11-28T15:35:47-05:00",
+    "last_modified": "2022-11-28T16:14:35-05:00",
     "input_file": {}
   }
 ]

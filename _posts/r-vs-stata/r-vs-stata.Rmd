@@ -1,0 +1,21 @@
+---
+title: R vs Stata
+description: |
+ Contrast between R and Stata.
+author: R.Andres Castaneda
+date: '2022-11-28'
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+```{r embed-class01, echo=FALSE}
+xaringanExtra::embed_xaringan(url   = "slides/R_vs_Stata.html",
+                              ratio = "16:9")
+```
+
