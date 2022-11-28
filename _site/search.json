@@ -1,0 +1,20 @@
+{
+  "articles": [
+    {
+      "path": "about.html",
+      "title": "About this R Training",
+      "description": "This site is for the internal user of GPID team in the DECIS department of the \nWorld Bank. It does not contain sesnsible information but it also is intended \nfor internal use only. ",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n",
+      "last_modified": "2022-11-28T15:55:02-05:00"
+    },
+    {
+      "path": "index.html",
+      "title": "R Training",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n",
+      "last_modified": "2022-11-28T15:55:05-05:00"
+    }
+  ],
+  "collections": ["posts/posts.json"]
+}

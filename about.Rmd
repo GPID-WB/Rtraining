@@ -1,0 +1,11 @@
+---
+title: "About this R Training"
+description: |
+  This site is for the internal user of GPID team in the DECIS department of the 
+  World Bank. It does not contain sesnsible information but it also is intended 
+  for internal use only. 
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
