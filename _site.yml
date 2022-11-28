@@ -3,7 +3,7 @@ title: "R Training for GPID Team"
 base_url: https://povcalnet-team.github.io/Rtraining/
 description: |
   R Training
-output_dir: "_site"
+output_dir: "docs"
 include: slides/
 navbar:
   right:
