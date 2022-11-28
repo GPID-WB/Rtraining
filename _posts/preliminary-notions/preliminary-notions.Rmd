@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 
 ```{r embed-class01, echo=FALSE}
-xaringanExtra::embed_xaringan(url   = "slides/preliminary_notions.html",
+xaringanExtra::embed_xaringan(url   = "slides/preliminary_notions",
                               ratio = "16:9")
 ```
 
