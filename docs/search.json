@@ -6,14 +6,14 @@
       "description": "This site is for the internal user of GPID team in the DECIS department of the \nWorld Bank. It does not contain sesnsible information but it also is intended \nfor internal use only. ",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2022-11-28T16:44:55-05:00"
+      "last_modified": "2022-11-28T16:47:31-05:00"
     },
     {
       "path": "index.html",
       "title": "R Training",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2022-11-28T16:44:56-05:00"
+      "last_modified": "2022-11-28T16:47:32-05:00"
     }
   ],
   "collections": ["posts/posts.json"]
