@@ -10,7 +10,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = TRUE)
 
 ```
 
@@ -19,5 +19,77 @@ knitr::opts_chunk$set(echo = FALSE)
 ```{r embed-class01, echo=FALSE}
 xaringanExtra::embed_xaringan(url   = "../../slides/preliminary_notions/",
                               ratio = "16:9")
+```
+
+# Understanding factors
+
+
+## From characters to factors
+```{r chr}
+
+# Simple character vector
+degree <- c("master", "master", "bachelor", "phd", "bachelor", "master")
+degree
+class(degree)
+typeof(degree)
+attributes(degree)
+summary(degree)
+
+```
+
+
+```{r fc}
+
+degree_fc <- factor(degree, levels = c("bachelor", "master",  "phd"))
+class(degree_fc)
+typeof(degree_fc)
+attributes(degree_fc)
+summary(degree_fc)
+```
+
+```{r fc-plot}
+plot(degree_fc, col = "steelblue")
+
+```
+
+```{r fc-plot-err, error=TRUE}
+plot(degree, col = "steelblue")
+
+```
+
+## From integer to factors
+
+```{r fc-int}
+
+degree2    <- c(1L, 3L, 1L)
+class(degree2)
+typeof(degree2)
+attributes(degree2)
+summary(degree2)
+
+degree2_fc <- factor(degree2,
+                    levels = c(1, 2, 3),
+                    labels = c("bachelor", "master", "phd"))
+class(degree2_fc)
+typeof(degree2_fc)
+attributes(degree2_fc)
+summary(degree2_fc)
+
+
+plot(degree2)
+plot(degree2_fc)
+
+```
+
+
+# The beauty of classes
+
+
+```{r methods}
+
+methods("summary")
+
+methods("print")
+
 ```
 
