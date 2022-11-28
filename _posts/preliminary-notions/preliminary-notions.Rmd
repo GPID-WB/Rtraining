@@ -11,12 +11,13 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+
 ```
 
 
 
 ```{r embed-class01, echo=FALSE}
-xaringanExtra::embed_xaringan(url   = "slides/preliminary_notions",
+xaringanExtra::embed_xaringan(url   = here::here("slides/preliminary_notions/"),
                               ratio = "16:9")
 ```
 
