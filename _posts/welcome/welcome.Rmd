@@ -1,11 +1,11 @@
 ---
 title: "Welcome to R Training"
 description: |
-  Welcome to R Training. This is site is intended to host the information of 
+  Welcome to R Training. This site is intended to host the information of 
   the GPID R training
 author:
   - name: R.Andres Castaneda
-date: 11-28-2022
+date: 11-08-2022
 output:
   distill::distill_article:
     self_contained: false

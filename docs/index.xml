@@ -7,14 +7,14 @@
     <description>R Training
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Mon, 28 Nov 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 22 Nov 2022 00:00:00 +0000</lastBuildDate>
     <item>
       <title>Preliminary notions</title>
       <dc:creator>R.Andres Castaneda</dc:creator>
       <link>https://povcalnet-team.github.io/Rtraining/posts/preliminary-notions</link>
       <description>Básic concepts such as object, names, types, and class.</description>
       <guid>https://povcalnet-team.github.io/Rtraining/posts/preliminary-notions</guid>
-      <pubDate>Mon, 28 Nov 2022 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 22 Nov 2022 00:00:00 +0000</pubDate>
       <media:content url="https://povcalnet-team.github.io/Rtraining/posts/preliminary-notions/preliminary-notions_files/figure-html5/fc-plot-1.png" medium="image" type="image/png" width="1248" height="768"/>
     </item>
     <item>
@@ -23,16 +23,16 @@
       <link>https://povcalnet-team.github.io/Rtraining/posts/r-vs-stata</link>
       <description>Contrast between R and Stata.</description>
       <guid>https://povcalnet-team.github.io/Rtraining/posts/r-vs-stata</guid>
-      <pubDate>Mon, 28 Nov 2022 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 15 Nov 2022 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Welcome to R Training</title>
       <dc:creator>R.Andres Castaneda</dc:creator>
       <link>https://povcalnet-team.github.io/Rtraining/posts/welcome</link>
-      <description>Welcome to R Training. This is site is intended to host the information of 
+      <description>Welcome to R Training. This site is intended to host the information of 
 the GPID R training</description>
       <guid>https://povcalnet-team.github.io/Rtraining/posts/welcome</guid>
-      <pubDate>Mon, 28 Nov 2022 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 08 Nov 2022 00:00:00 +0000</pubDate>
     </item>
   </channel>
 </rss>

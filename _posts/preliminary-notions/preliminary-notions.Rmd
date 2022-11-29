@@ -3,10 +3,13 @@ title: Preliminary notions
 description: |
   Básic concepts such as object, names, types, and class.
 author: R.Andres Castaneda
-date: '2022-11-28'
+date: '2022-11-22'
 output:
   distill::distill_article:
     self_contained: false
+    toc: true
+    toc_depth: 3
+    toc_float: true
 ---
 
 ```{r setup, include=FALSE}
@@ -14,6 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```
 
+# Slides
 
 
 ```{r embed-class01, echo=FALSE}
@@ -21,13 +25,37 @@ xaringanExtra::embed_xaringan(url   = "../../slides/preliminary_notions/",
                               ratio = "16:9")
 ```
 
-# Understanding factors
+#  Hands on 
+
+## Exercises 
 
 
-## From characters to factors
+1. What is the difference between `c(list(1:3), list(9))` and `list(list(1:3), list(9))`
+
+2. Is there any difference between these three ways of assignment?
+
+```{r ex2}
+assign('a', c(10, 150, 30, 45, 20.3))
+a <- c(10, 150, 30, 45, 20.3)
+a = c(10, 150, 30, 45, 20.3)
+```
+
+3. The `dim()` function gets the dimension of an object. Why `dim(a)` is `NULL`?
+
+4. Why `is.character(c('blue',10,'green',20))` is `TRUE`?
+
+R comes with a variety of datasets to work with (Similar to `sysuse auto` in Stata). You can see all the datasets available by typing `library(help = "datasets")`.  
+
+5. In a `tibble` bound to the name `tb`, add a column named `x` with the vector `rivers` from the internal `datasets`.
+
+
+
+## Understanding factors
+
+### From characters to factors
 ```{r chr}
 
-# Simple character vector
+## Simple character vector
 degree <- c("master", "master", "bachelor", "phd", "bachelor", "master")
 degree
 class(degree)
@@ -57,7 +85,7 @@ plot(degree, col = "steelblue")
 
 ```
 
-## From integer to factors
+### From integer to factors
 
 ```{r fc-int}
 
@@ -82,7 +110,7 @@ plot(degree2_fc)
 ```
 
 
-# The beauty of classes
+## The beauty of classes
 
 
 ```{r methods}
