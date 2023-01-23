@@ -1,0 +1,194 @@
+---
+title: Subsetting
+description: |
+  select elements from an R object. All the informtion in this 
+  chapter comes from the Subsetting chapter of Advanced R by 
+  Hadley Wickham.
+author: R.Andres Castaneda
+date: '2023-01-24'
+output:
+  distill::distill_article:
+    self_contained: false
+    toc: true
+    toc_depth: 3
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+# Atomic vectors
+
+We have two vectors, `x` and `y` .
+
+```{r}
+x <- c(1, 3, 2, 4, -10)
+y <- c("c", "a", "d",  "b")
+length(x)
+length(y)
+```
+
+Use [`[`](https://rdrr.io/r/base/Extract.html) to select any number of elements from a vector.
+
+## Using numbers
+
+### Positive numbers
+
+Return the elements in **specified positions**.
+
+```{r}
+x[c(3, 1)]
+
+# Order of the elements of `x` is another vector of the same length as `x`
+order(x)
+order(y)
+
+x
+y
+
+x[order(x)]
+x[order(y)]
+y[order(x)]
+
+# Duplicate indices will duplicate values
+y
+y[c(1, 1)]
+
+# Real numbers are silently truncated to integers
+y
+y[c(2.1, 2.9)]
+
+```
+
+### Negative numbers
+
+Exclude elements at the specified positions:
+
+```{r}
+# both element ar negative
+x[-c(3, 1)]
+```
+
+you can\'t mix positive and negative integers in a single subset
+
+```{r , error=TRUE}
+x[c(-1, 2)]
+```
+
+But you can do the following
+
+```{r}
+c(x[-1], x[2])
+```
+
+### Logical vectors
+
+Logical vectors are recycled. For subsetting `c(1, 0)` is different to `c(TRUE, FALSE)`.
+
+```{r}
+# For subsetting
+y
+y[c(FALSE, TRUE, TRUE, FALSE)]
+y[c(0, 1, 1, 0)]
+
+# Length zero
+y[0]
+
+# Return original vector
+y[]
+
+# Logical evaluation 
+
+if (TRUE) {
+  print("works")
+}
+if (1) {
+  print("works")
+}
+
+if (FALSE) {
+  # Not working
+  print("does not work")
+}
+if (0) {
+  # Not working
+  print("does not work")
+}
+
+# Rescycle of logical vectors for subsetting
+x
+x[c(TRUE, FALSE)]
+```
+
+## Using names
+
+Sometimes, elements of a vector are named. Remember, this is *different* from having a vector named. The variables in a data frame are **named** vectors, but you could also name the elements of a variable. This is similar, but not the same to have a factor vector. Factors are numeric vectors with a class `factor`. Named elements in a vector are elements of any `type` with a corresponding name. Factors behave like factors depending of the function that is reading them. Named vectors behave according to their own `type`, regardless of the name. Yes, class and names are attributes but of different kinds.
+
+```{r}
+
+# using setNamnes()
+nombres <- c("Serapio", "Trimegisto", "Amalasunta", "Metafrasto", "Brunilda")
+xm <- setNames(object = x, 
+               nm = nombres)
+xm
+
+# using names()
+x
+names(x) <- nombres
+x
+
+# Print or use the names
+names(x)
+
+nm <- names(x)
+nm
+# Remove names
+names(x) <- NULL
+x
+
+
+# Getting one element
+xm["Amalasunta"]
+
+# getting an element from a vector without names
+
+x["Amalasunta"]
+
+# Some names exist and some other not
+xm[c("Andres", "Amalasunta")]
+
+# repeated names
+xm[c("Trimegisto", "Trimegisto")]
+
+
+# Names are matched exaxtly.
+xm[c("Tri", "Trimegisto")]
+
+```
+
+### Subsetting with factors
+
+It is just a bad idea.
+
+```{r}
+fnames <- factor(nombres)
+fnames
+as.numeric(fnames)
+fnames <- factor(nombres)
+
+# factors are not names
+f2 <- fnames[c("Metafrasto", "Serapio")]
+f2
+
+f3 <- fnames[c(3, 5)]
+
+xm[c(3, 5)]
+xm[f3]
+
+as.numeric(f3)
+
+```
+
+# Exercises

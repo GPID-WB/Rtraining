@@ -7,7 +7,17 @@
     <description>R Training
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Tue, 22 Nov 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 24 Jan 2023 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Subsetting</title>
+      <dc:creator>R.Andres Castaneda</dc:creator>
+      <link>https://povcalnet-team.github.io/Rtraining/posts/subsetting</link>
+      <description>select elements from an R object. All the informtion in this 
+chapter comes from the Subsetting chapter of Advanced R by 
+Hadley Wickham.</description>
+      <guid>https://povcalnet-team.github.io/Rtraining/posts/subsetting</guid>
+      <pubDate>Tue, 24 Jan 2023 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>Preliminary notions</title>
       <dc:creator>R.Andres Castaneda</dc:creator>
