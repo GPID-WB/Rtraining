@@ -71,7 +71,7 @@ Exclude elements at the specified positions:
 x[-c(3, 1)]
 ```
 
-you can\'t mix positive and negative integers in a single subset
+you can't mix positive and negative integers in a single subset
 
 ```{r , error=TRUE}
 x[c(-1, 2)]

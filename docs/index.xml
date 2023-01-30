@@ -7,7 +7,15 @@
     <description>R Training
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Tue, 24 Jan 2023 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 31 Jan 2023 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Working with data frames</title>
+      <dc:creator>R.Andres Castaneda</dc:creator>
+      <link>https://povcalnet-team.github.io/Rtraining/posts/working-with-data-frames</link>
+      <description>Basic principles to work with data frame in base R, Tidyverse, and data.table.</description>
+      <guid>https://povcalnet-team.github.io/Rtraining/posts/working-with-data-frames</guid>
+      <pubDate>Tue, 31 Jan 2023 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>Subsetting</title>
       <dc:creator>R.Andres Castaneda</dc:creator>

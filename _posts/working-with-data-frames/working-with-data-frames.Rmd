@@ -1,0 +1,138 @@
+---
+title: Working with data frames
+description: |
+  Basic principles to work with data frame in base R, Tidyverse, and data.table.
+author: R.Andres Castaneda
+date: '2023-01-31'
+output:
+  distill::distill_article:
+    self_contained: false
+    toc: true
+    toc_depth: 3
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+xaringanExtra::use_panelset()
+```
+
+# Set up
+
+Attach important packages. For a comprehensive comparison see this [blog](https://atrebas.github.io/post/2019-03-03-datatable-dplyr/). 
+
+```{r}
+library(tidyverse)
+library(data.table)
+```
+
+Load data. You can go [here](https://github.com/PovcalNet-Team/Rtraining/raw/main/data) to take a look at some fake data in different formats
+
+```{r, results=FALSE}
+
+link_data <- "https://github.com/PovcalNet-Team/Rtraining/raw/main/data/ago_2018.csv"
+
+df <- read.csv(link_data) # base
+tb <- read_csv(link_data)  # tidyverse 
+dt <- fread(link_data) # data.table
+
+```
+
+
+We could have done also this
+
+```{r eval=FALSE}
+df <- read.csv(link_data) # base
+tb <- as.tibble(df)
+dt <- as.data.table(tb)
+```
+
+
+# Basic operations
+
+## Filter rows
+
+### Keep rows using indices
+```{r}
+filter <- c(3:4)
+```
+
+::: panelset
+::: panel
+
+#### Base R
+
+```{r, error=TRUE}
+df[filter,]
+df[filter] # This does not work
+```
+:::
+
+::: panel
+#### Tidyverse
+
+```{r}
+tb[filter,]
+slice(tb, filter) # same
+```
+:::
+
+::: panel
+#### data.table
+
+```{r}
+dt[filter,]
+# This works. In data.frame does not. 
+dt[filter] # same. 
+```
+:::
+:::
+
+<aside>For the sake of time, I'll incorporate all the examples later.</aside>
+
+### Keep rows using logical expressions
+
+::: panelset
+::: panel
+
+#### Base R
+
+```{r}
+x <- df[df$area == "urban",]
+x[1:3,] 
+```
+:::
+
+::: panel
+#### Tidyverse
+
+```{r}
+tb |> 
+  filter(area == "urban") |> 
+  slice(1:3)
+```
+:::
+
+::: panel
+#### data.table
+
+```{r, error=TRUE}
+
+# data.table way and No need of $
+ 
+dt[area == "urban"
+   ][1:3]
+
+# Tidyverse syntax works with data.table
+dt |> 
+  filter(area == "urban") |> 
+  slice(1:3)
+
+# but data.table syntax does not with tidyverse
+tb[area == "urban"][1:3]
+
+```
+:::
+:::
+
+

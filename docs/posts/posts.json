@@ -1,5 +1,22 @@
 [
   {
+    "path": "posts/working-with-data-frames/",
+    "title": "Working with data frames",
+    "description": "Basic principles to work with data frame in base R, Tidyverse, and data.table.",
+    "author": [
+      {
+        "name": "R.Andres Castaneda",
+        "url": {}
+      }
+    ],
+    "date": "2023-01-31",
+    "categories": [],
+    "contents": "\r\n\r\nContents\r\nSet up\r\nBasic operations\r\nFilter rows\r\nKeep rows using indices\r\nKeep rows using logical expressions\r\n\r\n\r\n\r\nSet up\r\nAttach important packages. For a comprehensive comparison see this blog.\r\n\r\n\r\nlibrary(tidyverse)\r\nlibrary(data.table)\r\n\r\n\r\nLoad data. You can go here to take a look at some fake data in different formats\r\n\r\n\r\nlink_data <- \"https://github.com/PovcalNet-Team/Rtraining/raw/main/data/ago_2018.csv\"\r\n\r\ndf <- read.csv(link_data) # base\r\ntb <- read_csv(link_data)  # tidyverse \r\ndt <- fread(link_data) # data.table\r\n\r\n\r\nWe could have done also this\r\n\r\n\r\ndf <- read.csv(link_data) # base\r\ntb <- as.tibble(df)\r\ndt <- as.data.table(tb)\r\n\r\n\r\nBasic operations\r\nFilter rows\r\nKeep rows using indices\r\n\r\n\r\nfilter <- c(3:4)\r\n\r\n\r\n\r\nBase R\r\n\r\n\r\ndf[filter,]\r\n\r\n   area   welfare    weight\r\n3 rural 213.44287 398.89557\r\n4 rural 423.68354 538.45697\r\n\r\ndf[filter] # This does not work\r\n\r\nError in `[.data.frame`(df, filter): undefined columns selected\r\n\r\nTidyverse\r\n\r\n\r\ntb[filter,]\r\n\r\n# A tibble: 2 x 3\r\n  area  welfare weight\r\n  <chr>   <dbl>  <dbl>\r\n1 rural    213.   399.\r\n2 rural    424.   538.\r\n\r\nslice(tb, filter) # same\r\n\r\n# A tibble: 2 x 3\r\n  area  welfare weight\r\n  <chr>   <dbl>  <dbl>\r\n1 rural    213.   399.\r\n2 rural    424.   538.\r\n\r\ndata.table\r\n\r\n\r\ndt[filter,]\r\n\r\n    area   welfare    weight\r\n1: rural 213.44287 398.89557\r\n2: rural 423.68354 538.45697\r\n\r\n# This works. In data.frame does not. \r\ndt[filter] # same. \r\n\r\n    area   welfare    weight\r\n1: rural 213.44287 398.89557\r\n2: rural 423.68354 538.45697\r\n\r\n\r\n\r\nFor the sake of time, I’ll incorporate all the examples later.\r\nKeep rows using logical expressions\r\n\r\nBase R\r\n\r\n\r\nx <- df[df$area == \"urban\",]\r\nx[1:3,] \r\n\r\n     area   welfare    weight\r\n222 urban 665.10899 641.75787\r\n223 urban 489.98341 112.15016\r\n224 urban  75.45557 317.06293\r\n\r\nTidyverse\r\n\r\n\r\ntb |> \r\n  filter(area == \"urban\") |> \r\n  slice(1:3)\r\n\r\n# A tibble: 3 x 3\r\n  area  welfare weight\r\n  <chr>   <dbl>  <dbl>\r\n1 urban   665.    642.\r\n2 urban   490.    112.\r\n3 urban    75.5   317.\r\n\r\ndata.table\r\n\r\n\r\n# data.table way and No need of $\r\n \r\ndt[area == \"urban\"\r\n   ][1:3]\r\n\r\n    area   welfare    weight\r\n1: urban 665.10899 641.75787\r\n2: urban 489.98341 112.15016\r\n3: urban  75.45557 317.06293\r\n\r\n# Tidyverse syntax works with data.table\r\ndt |> \r\n  filter(area == \"urban\") |> \r\n  slice(1:3)\r\n\r\n    area   welfare    weight\r\n1: urban 665.10899 641.75787\r\n2: urban 489.98341 112.15016\r\n3: urban  75.45557 317.06293\r\n\r\n# but data.table syntax does not with tidyverse\r\ntb[area == \"urban\"][1:3]\r\n\r\nError in `[.tbl_df`(tb, area == \"urban\"): object 'area' not found\r\n\r\n\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2023-01-30T17:13:23-05:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/subsetting/",
     "title": "Subsetting",
     "description": "select elements from an R object. All the informtion in this \nchapter comes from the Subsetting chapter of Advanced R by \nHadley Wickham.",
