@@ -1,0 +1,51 @@
+---
+title: How to use the Pipe
+description: |
+  Understand the difference between the magritr pipe and the native pipe, and when 
+  to use each. Understand when it is better to use the pipe rather than regular 
+  Base R syntax. 
+author: R.Andres Castaneda
+date: '2023-05-09'
+output:
+  distill::distill_article:
+    self_contained: false
+    toc: true
+    toc_depth: 3
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+# Packages
+
+## loading and attaching
+
+There is an important difference between loading and attaching a package.
+
+-   Loading refers to put all the components of a package available in memory ( code, data, and any DLLs; register S3 and S4 methods). However, those components are not in the search the **search path**, which is equivalent to the **ado path** in Stata. This is way, we need to call the function of loaded package with `::`. If the packages has not been loaded, using `::` loads the package.
+
+-   Attaching loads the package and makes it available in the search path. You do it using `library()` or `require()`. When it is attached, you don't need to use `::`, but you can.
+
+Read more [here](https://r-pkgs.org/dependencies-mindset-background.html#sec-dependencies-attach-vs-load), R-Packages book.
+
+## When to attach
+
+Attaching has the advantage of not using `::`, but when you use too many packages, it is difficult to know what function comes from what package.
+
+I attach when I am using a package that I need all the time. For example, `tidyverse` or `data.table`. However, try to always use `::` because the code is clearer and there is no penalty in speed (minimum).
+
+If you are developing packages, you canNOT attach package. You always have to use `::`
+
+# Main idea of the pipe
+
+```{r}
+# 
+```
+
+# sources
+
+-   This post in [stackoverflow](https://stackoverflow.com/a/72086492/11472481)
+-   This [blog](https://ivelasq.rbind.io/blog/understanding-the-r-pipe/) by Isabella Velásquez. It is outdated because it is based in R 4.1, but it is still useful.
