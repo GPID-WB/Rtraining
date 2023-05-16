@@ -1547,6 +1547,22 @@ Base R syntax.</p></p>
 <h2 id="when-to-attach">When to attach</h2>
 <p>Attaching has the advantage of not using <code>::</code>, but when you use too many packages, it is difficult to know what function comes from what package.</p>
 <p>I attach when I am using a package that I need all the time. For example, <code>tidyverse</code> or <code>data.table</code>. However, try to always use <code>::</code> because the code is clearer and there is no penalty in speed (minimum).</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>flights</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>dest</span> <span class='op'>==</span> <span class='st'>"IAH"</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>speed <span class='op'>=</span> <span class='va'>distance</span> <span class='op'>/</span> <span class='va'>air_time</span> <span class='op'>*</span> <span class='fl'>60</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>year</span><span class='op'>:</span><span class='va'>day</span>, <span class='va'>dep_time</span>, <span class='va'>carrier</span>, <span class='va'>flight</span>, <span class='va'>speed</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span><span class='op'>(</span><span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/desc.html'>desc</a></span><span class='op'>(</span><span class='va'>speed</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span></span>
+<span><span class='va'>flights</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>dest</span> <span class='op'>==</span> <span class='st'>"IAH"</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'>mutate</span><span class='op'>(</span>speed <span class='op'>=</span> <span class='va'>distance</span> <span class='op'>/</span> <span class='va'>air_time</span> <span class='op'>*</span> <span class='fl'>60</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'>select</span><span class='op'>(</span><span class='va'>year</span><span class='op'>:</span><span class='va'>day</span>, <span class='va'>dep_time</span>, <span class='va'>carrier</span>, <span class='va'>flight</span>, <span class='va'>speed</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'>arrange</span><span class='op'>(</span><span class='fu'>desc</span><span class='op'>(</span><span class='va'>speed</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
 <p>If you are developing packages, you <strong>cannot</strong> attach packages. You always have to use <code>::</code></p>
 <h1 id="main-idea-of-the-pipe">Main idea of the pipe</h1>
 <div class="layout-chunk" data-layout="l-body">
@@ -1579,25 +1595,22 @@ Base R syntax.</p></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># so you go from this</span></span>
-<span><span class='va'>flights1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>flights</span>, <span class='va'>dest</span> <span class='op'>==</span> <span class='st'>"IAH"</span><span class='op'>)</span></span>
-<span><span class='va'>flights2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/mutate.html'>mutate</a></span><span class='op'>(</span><span class='va'>flights1</span>, speed <span class='op'>=</span> <span class='va'>distance</span> <span class='op'>/</span> <span class='va'>air_time</span> <span class='op'>*</span> <span class='fl'>60</span><span class='op'>)</span></span>
-<span><span class='va'>flights3</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/select.html'>select</a></span><span class='op'>(</span><span class='va'>flights2</span>, <span class='va'>year</span><span class='op'>:</span><span class='va'>day</span>, <span class='va'>dep_time</span>, <span class='va'>carrier</span>, <span class='va'>flight</span>, <span class='va'>speed</span><span class='op'>)</span></span>
-<span><span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/arrange.html'>arrange</a></span><span class='op'>(</span><span class='va'>flights3</span>, <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/desc.html'>desc</a></span><span class='op'>(</span><span class='va'>speed</span><span class='op'>)</span><span class='op'>)</span></span>
+<span><span class='va'>flights1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>flights</span>, <span class='va'>dest</span> <span class='op'>==</span> <span class='st'>"IAH"</span><span class='op'>)</span></span>
+<span><span class='va'>flights2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span><span class='va'>flights1</span>, speed <span class='op'>=</span> <span class='va'>distance</span> <span class='op'>/</span> <span class='va'>air_time</span> <span class='op'>*</span> <span class='fl'>60</span><span class='op'>)</span></span>
+<span><span class='va'>flights3</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>flights2</span>, <span class='va'>year</span><span class='op'>:</span><span class='va'>day</span>, <span class='va'>dep_time</span>, <span class='va'>carrier</span>, <span class='va'>flight</span>, <span class='va'>speed</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span><span class='op'>(</span><span class='va'>flights3</span>, <span class='fu'><a href='https://dplyr.tidyverse.org/reference/desc.html'>desc</a></span><span class='op'>(</span><span class='va'>speed</span><span class='op'>)</span><span class='op'>)</span></span>
 <span></span>
 <span></span>
 <span><span class='co'># or this</span></span>
-<span><span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/arrange.html'>arrange</a></span><span class='op'>(</span></span>
-<span>  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/select.html'>select</a></span><span class='op'>(</span></span>
-<span>    <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/mutate.html'>mutate</a></span><span class='op'>(</span></span>
-<span>      <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/filter.html'>filter</a></span><span class='op'>(</span></span>
-<span>        <span class='va'>flights</span>, </span>
-<span>        <span class='va'>dest</span> <span class='op'>==</span> <span class='st'>"IAH"</span></span>
-<span>      <span class='op'>)</span>,</span>
+<span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span><span class='op'>(</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span></span>
+<span>    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span></span>
+<span>      <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>flights</span>, <span class='va'>dest</span> <span class='op'>==</span> <span class='st'>"IAH"</span><span class='op'>)</span>,</span>
 <span>      speed <span class='op'>=</span> <span class='va'>distance</span> <span class='op'>/</span> <span class='va'>air_time</span> <span class='op'>*</span> <span class='fl'>60</span></span>
 <span>    <span class='op'>)</span>,</span>
 <span>    <span class='va'>year</span><span class='op'>:</span><span class='va'>day</span>, <span class='va'>dep_time</span>, <span class='va'>carrier</span>, <span class='va'>flight</span>, <span class='va'>speed</span></span>
 <span>  <span class='op'>)</span>,</span>
-<span>  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/desc.html'>desc</a></span><span class='op'>(</span><span class='va'>speed</span><span class='op'>)</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/desc.html'>desc</a></span><span class='op'>(</span><span class='va'>speed</span><span class='op'>)</span></span>
 <span><span class='op'>)</span></span>
 <span></span>
 <span></span>
@@ -1608,25 +1621,25 @@ Base R syntax.</p></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>flights</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>dest</span> <span class='op'>==</span> <span class='st'>"IAH"</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/mutate.html'>mutate</a></span><span class='op'>(</span>speed <span class='op'>=</span> <span class='va'>distance</span> <span class='op'>/</span> <span class='va'>air_time</span> <span class='op'>*</span> <span class='fl'>60</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/select.html'>select</a></span><span class='op'>(</span><span class='va'>year</span><span class='op'>:</span><span class='va'>day</span>, <span class='va'>dep_time</span>, <span class='va'>carrier</span>, <span class='va'>flight</span>, <span class='va'>speed</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/arrange.html'>arrange</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/desc.html'>desc</a></span><span class='op'>(</span><span class='va'>speed</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>dest</span> <span class='op'>==</span> <span class='st'>"IAH"</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>speed <span class='op'>=</span> <span class='va'>distance</span> <span class='op'>/</span> <span class='va'>air_time</span> <span class='op'>*</span> <span class='fl'>60</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>year</span><span class='op'>:</span><span class='va'>day</span>, <span class='va'>dep_time</span>, <span class='va'>carrier</span>, <span class='va'>flight</span>, <span class='va'>speed</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span><span class='op'>(</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/desc.html'>desc</a></span><span class='op'>(</span><span class='va'>speed</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code># A tibble: 7,198 × 7
-    year month   day dep_time carrier flight    speed
-   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt; &lt;chr&gt;    &lt;int&gt;    &lt;dbl&gt;
- 1  2013     7     9      707 UA         226 521.7391
- 2  2013     8    27     1850 UA        1128 521.2270
- 3  2013     8    28      902 UA        1711 518.5185
- 4  2013     8    28     2122 UA        1022 518.5185
- 5  2013     6    11     1628 UA        1178 515.3374
- 6  2013     8    27     1017 UA         333 515.3374
- 7  2013     8    27     1205 UA        1421 515.3374
- 8  2013     8    27     1758 UA         302 515.3374
- 9  2013     9    27      521 UA         252 515.3374
-10  2013     8    28      625 UA         559 514.9091
-# ℹ 7,188 more rows</code></pre>
+<pre><code># A tibble: 7,198 x 7
+    year month   day dep_time carrier flight speed
+   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt; &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt;
+ 1  2013     7     9      707 UA         226  522.
+ 2  2013     8    27     1850 UA        1128  521.
+ 3  2013     8    28      902 UA        1711  519.
+ 4  2013     8    28     2122 UA        1022  519.
+ 5  2013     6    11     1628 UA        1178  515.
+ 6  2013     8    27     1017 UA         333  515.
+ 7  2013     8    27     1205 UA        1421  515.
+ 8  2013     8    27     1758 UA         302  515.
+ 9  2013     9    27      521 UA         252  515.
+10  2013     8    28      625 UA         559  515.
+# i 7,188 more rows</code></pre>
 </div>
 <h1 id="sources">sources</h1>
 <ul>
