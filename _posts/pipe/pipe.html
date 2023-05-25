@@ -88,638 +88,39 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--radix_placeholder_meta_tags-->
-  <title>R Training for GPID Team: About this R Training</title>
+  <title>How to use the Pipe</title>
 
-  <meta property="description" itemprop="description" content="This site is for the internal user of GPID team in the DECIS department of the &#10;World Bank. It does not contain sesnsible information but it also is intended &#10;for internal use only."/>
+  <meta property="description" itemprop="description" content="Understand the difference between the magritr pipe and the native pipe, and when &#10;to use each. Understand when it is better to use the pipe rather than regular &#10;Base R syntax."/>
 
 
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2023-05-09"/>
+  <meta property="article:created" itemprop="dateCreated" content="2023-05-09"/>
+  <meta name="article:author" content="R.Andres Castaneda"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="R Training for GPID Team: About this R Training"/>
+  <meta property="og:title" content="How to use the Pipe"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="This site is for the internal user of GPID team in the DECIS department of the &#10;World Bank. It does not contain sesnsible information but it also is intended &#10;for internal use only."/>
+  <meta property="og:description" content="Understand the difference between the magritr pipe and the native pipe, and when &#10;to use each. Understand when it is better to use the pipe rather than regular &#10;Base R syntax."/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:site_name" content="R Training for GPID Team"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="R Training for GPID Team: About this R Training"/>
-  <meta property="twitter:description" content="This site is for the internal user of GPID team in the DECIS department of the &#10;World Bank. It does not contain sesnsible information but it also is intended &#10;for internal use only."/>
+  <meta property="twitter:title" content="How to use the Pipe"/>
+  <meta property="twitter:description" content="Understand the difference between the magritr pipe and the native pipe, and when &#10;to use each. Understand when it is better to use the pipe rather than regular &#10;Base R syntax."/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description"]}},"value":[{"type":"character","attributes":{},"value":["About this R Training"]},{"type":"character","attributes":{},"value":["This site is for the internal user of GPID team in the DECIS department of the \nWorld Bank. It does not contain sesnsible information but it also is intended \nfor internal use only. "]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["How to use the Pipe"]},{"type":"character","attributes":{},"value":["Understand the difference between the magritr pipe and the native pipe, and when \nto use each. Understand when it is better to use the pipe rather than regular \nBase R syntax. \n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["R.Andres Castaneda"]}]}]},{"type":"character","attributes":{},"value":["2023-05-09"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_depth","toc_float"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]},{"type":"logical","attributes":{},"value":[true]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"NULL"}
+  </script>
   <!--radix_placeholder_navigation_in_header-->
-  <meta name="distill:offset" content=""/>
-
-  <script type="application/javascript">
-
-    window.headroom_prevent_pin = false;
-
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-
-      // initialize headroom for banner
-      var header = $('header').get(0);
-      var headerHeight = header.offsetHeight;
-      var headroom = new Headroom(header, {
-        tolerance: 5,
-        onPin : function() {
-          if (window.headroom_prevent_pin) {
-            window.headroom_prevent_pin = false;
-            headroom.unpin();
-          }
-        }
-      });
-      headroom.init();
-      if(window.location.hash)
-        headroom.unpin();
-      $(header).addClass('headroom--transition');
-
-      // offset scroll location for banner on hash change
-      // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
-      window.addEventListener("hashchange", function(event) {
-        window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
-      });
-
-      // responsive menu
-      $('.distill-site-header').each(function(i, val) {
-        var topnav = $(this);
-        var toggle = topnav.find('.nav-toggle');
-        toggle.on('click', function() {
-          topnav.toggleClass('responsive');
-        });
-      });
-
-      // nav dropdowns
-      $('.nav-dropbtn').click(function(e) {
-        $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
-        $(this).parent().siblings('.nav-dropdown')
-           .children('.nav-dropdown-content').removeClass('nav-dropdown-active');
-      });
-      $("body").click(function(e){
-        $('.nav-dropdown-content').removeClass('nav-dropdown-active');
-      });
-      $(".nav-dropdown").click(function(e){
-        e.stopPropagation();
-      });
-    });
-  </script>
-
-  <style type="text/css">
-
-  /* Theme (user-documented overrideables for nav appearance) */
-
-  .distill-site-nav {
-    color: rgba(255, 255, 255, 0.8);
-    background-color: #0F2E3D;
-    font-size: 15px;
-    font-weight: 300;
-  }
-
-  .distill-site-nav a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  .distill-site-nav a:hover {
-    color: white;
-  }
-
-  @media print {
-    .distill-site-nav {
-      display: none;
-    }
-  }
-
-  .distill-site-header {
-
-  }
-
-  .distill-site-footer {
-
-  }
-
-
-  /* Site Header */
-
-  .distill-site-header {
-    width: 100%;
-    box-sizing: border-box;
-    z-index: 3;
-  }
-
-  .distill-site-header .nav-left {
-    display: inline-block;
-    margin-left: 8px;
-  }
-
-  @media screen and (max-width: 768px) {
-    .distill-site-header .nav-left {
-      margin-left: 0;
-    }
-  }
-
-
-  .distill-site-header .nav-right {
-    float: right;
-    margin-right: 8px;
-  }
-
-  .distill-site-header a,
-  .distill-site-header .title {
-    display: inline-block;
-    text-align: center;
-    padding: 14px 10px 14px 10px;
-  }
-
-  .distill-site-header .title {
-    font-size: 18px;
-    min-width: 150px;
-  }
-
-  .distill-site-header .logo {
-    padding: 0;
-  }
-
-  .distill-site-header .logo img {
-    display: none;
-    max-height: 20px;
-    width: auto;
-    margin-bottom: -4px;
-  }
-
-  .distill-site-header .nav-image img {
-    max-height: 18px;
-    width: auto;
-    display: inline-block;
-    margin-bottom: -3px;
-  }
-
-
-
-  @media screen and (min-width: 1000px) {
-    .distill-site-header .logo img {
-      display: inline-block;
-    }
-    .distill-site-header .nav-left {
-      margin-left: 20px;
-    }
-    .distill-site-header .nav-right {
-      margin-right: 20px;
-    }
-    .distill-site-header .title {
-      padding-left: 12px;
-    }
-  }
-
-
-  .distill-site-header .nav-toggle {
-    display: none;
-  }
-
-  .nav-dropdown {
-    display: inline-block;
-    position: relative;
-  }
-
-  .nav-dropdown .nav-dropbtn {
-    border: none;
-    outline: none;
-    color: rgba(255, 255, 255, 0.8);
-    padding: 16px 10px;
-    background-color: transparent;
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: inherit;
-    margin: 0;
-    margin-top: 1px;
-    z-index: 2;
-  }
-
-  .nav-dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: white;
-    min-width: 200px;
-    border: 1px solid rgba(0,0,0,0.15);
-    border-radius: 4px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
-    z-index: 1;
-    margin-top: 2px;
-    white-space: nowrap;
-    padding-top: 4px;
-    padding-bottom: 4px;
-  }
-
-  .nav-dropdown-content hr {
-    margin-top: 4px;
-    margin-bottom: 4px;
-    border: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  }
-
-  .nav-dropdown-active {
-    display: block;
-  }
-
-  .nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
-    color: black;
-    padding: 6px 24px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-  }
-
-  .nav-dropdown-content .nav-dropdown-header {
-    display: block;
-    padding: 5px 24px;
-    padding-bottom: 0;
-    text-transform: uppercase;
-    font-size: 14px;
-    color: #999999;
-    white-space: nowrap;
-  }
-
-  .nav-dropdown:hover .nav-dropbtn {
-    color: white;
-  }
-
-  .nav-dropdown-content a:hover {
-    background-color: #ddd;
-    color: black;
-  }
-
-  .nav-right .nav-dropdown-content {
-    margin-left: -45%;
-    right: 0;
-  }
-
-  @media screen and (max-width: 768px) {
-    .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
-    .distill-site-header a.nav-toggle {
-      float: right;
-      display: block;
-    }
-    .distill-site-header .title {
-      margin-left: 0;
-    }
-    .distill-site-header .nav-right {
-      margin-right: 0;
-    }
-    .distill-site-header {
-      overflow: hidden;
-    }
-    .nav-right .nav-dropdown-content {
-      margin-left: 0;
-    }
-  }
-
-
-  @media screen and (max-width: 768px) {
-    .distill-site-header.responsive {position: relative; min-height: 500px; }
-    .distill-site-header.responsive a.nav-toggle {
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
-    .distill-site-header.responsive a,
-    .distill-site-header.responsive .nav-dropdown {
-      display: block;
-      text-align: left;
-    }
-    .distill-site-header.responsive .nav-left,
-    .distill-site-header.responsive .nav-right {
-      width: 100%;
-    }
-    .distill-site-header.responsive .nav-dropdown {float: none;}
-    .distill-site-header.responsive .nav-dropdown-content {position: relative;}
-    .distill-site-header.responsive .nav-dropdown .nav-dropbtn {
-      display: block;
-      width: 100%;
-      text-align: left;
-    }
-  }
-
-  /* Site Footer */
-
-  .distill-site-footer {
-    width: 100%;
-    overflow: hidden;
-    box-sizing: border-box;
-    z-index: 3;
-    margin-top: 30px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    text-align: center;
-  }
-
-  /* Headroom */
-
-  d-title {
-    padding-top: 6rem;
-  }
-
-  @media print {
-    d-title {
-      padding-top: 4rem;
-    }
-  }
-
-  .headroom {
-    z-index: 1000;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-  }
-
-  .headroom--transition {
-    transition: all .4s ease-in-out;
-  }
-
-  .headroom--unpinned {
-    top: -100px;
-  }
-
-  .headroom--pinned {
-    top: 0;
-  }
-
-  /* adjust viewport for navbar height */
-  /* helps vertically center bootstrap (non-distill) content */
-  .min-vh-100 {
-    min-height: calc(100vh - 100px) !important;
-  }
-
-  </style>
-
-  <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-  <link href="site_libs/font-awesome-6.2.1/css/all.min.css" rel="stylesheet"/>
-  <link href="site_libs/font-awesome-6.2.1/css/v4-shims.min.css" rel="stylesheet"/>
-  <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
-  <script src="site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
-  <script src="site_libs/fuse-6.4.1/fuse.min.js"></script>
-
-  <script type="application/javascript">
-
-  function getMeta(metaName) {
-    var metas = document.getElementsByTagName('meta');
-    for (let i = 0; i < metas.length; i++) {
-      if (metas[i].getAttribute('name') === metaName) {
-        return metas[i].getAttribute('content');
-      }
-    }
-    return '';
-  }
-
-  function offsetURL(url) {
-    var offset = getMeta('distill:offset');
-    return offset ? offset + '/' + url : url;
-  }
-
-  function createFuseIndex() {
-
-    // create fuse index
-    var options = {
-      keys: [
-        { name: 'title', weight: 20 },
-        { name: 'categories', weight: 15 },
-        { name: 'description', weight: 10 },
-        { name: 'contents', weight: 5 },
-      ],
-      ignoreLocation: true,
-      threshold: 0
-    };
-    var fuse = new window.Fuse([], options);
-
-    // fetch the main search.json
-    return fetch(offsetURL('search.json'))
-      .then(function(response) {
-        if (response.status == 200) {
-          return response.json().then(function(json) {
-            // index main articles
-            json.articles.forEach(function(article) {
-              fuse.add(article);
-            });
-            // download collections and index their articles
-            return Promise.all(json.collections.map(function(collection) {
-              return fetch(offsetURL(collection)).then(function(response) {
-                if (response.status === 200) {
-                  return response.json().then(function(articles) {
-                    articles.forEach(function(article) {
-                      fuse.add(article);
-                    });
-                  })
-                } else {
-                  return Promise.reject(
-                    new Error('Unexpected status from search index request: ' +
-                              response.status)
-                  );
-                }
-              });
-            })).then(function() {
-              return fuse;
-            });
-          });
-
-        } else {
-          return Promise.reject(
-            new Error('Unexpected status from search index request: ' +
-                        response.status)
-          );
-        }
-      });
-  }
-
-  window.document.addEventListener("DOMContentLoaded", function (event) {
-
-    // get search element (bail if we don't have one)
-    var searchEl = window.document.getElementById('distill-search');
-    if (!searchEl)
-      return;
-
-    createFuseIndex()
-      .then(function(fuse) {
-
-        // make search box visible
-        searchEl.classList.remove('hidden');
-
-        // initialize autocomplete
-        var options = {
-          autoselect: true,
-          hint: false,
-          minLength: 2,
-        };
-        window.autocomplete(searchEl, options, [{
-          source: function(query, callback) {
-            const searchOptions = {
-              isCaseSensitive: false,
-              shouldSort: true,
-              minMatchCharLength: 2,
-              limit: 10,
-            };
-            var results = fuse.search(query, searchOptions);
-            callback(results
-              .map(function(result) { return result.item; })
-            );
-          },
-          templates: {
-            suggestion: function(suggestion) {
-              var img = suggestion.preview && Object.keys(suggestion.preview).length > 0
-                ? `<img src="${offsetURL(suggestion.preview)}"</img>`
-                : '';
-              var html = `
-                <div class="search-item">
-                  <h3>${suggestion.title}</h3>
-                  <div class="search-item-description">
-                    ${suggestion.description || ''}
-                  </div>
-                  <div class="search-item-preview">
-                    ${img}
-                  </div>
-                </div>
-              `;
-              return html;
-            }
-          }
-        }]).on('autocomplete:selected', function(event, suggestion) {
-          window.location.href = offsetURL(suggestion.path);
-        });
-        // remove inline display style on autocompleter (we want to
-        // manage responsive display via css)
-        $('.algolia-autocomplete').css("display", "");
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-
-  });
-
-  </script>
-
-  <style type="text/css">
-
-  .nav-search {
-    font-size: x-small;
-  }
-
-  /* Algolioa Autocomplete */
-
-  .algolia-autocomplete {
-    display: inline-block;
-    margin-left: 10px;
-    vertical-align: sub;
-    background-color: white;
-    color: black;
-    padding: 6px;
-    padding-top: 8px;
-    padding-bottom: 0;
-    border-radius: 6px;
-    border: 1px #0F2E3D solid;
-    width: 180px;
-  }
-
-
-  @media screen and (max-width: 768px) {
-    .distill-site-nav .algolia-autocomplete {
-      display: none;
-      visibility: hidden;
-    }
-    .distill-site-nav.responsive .algolia-autocomplete {
-      display: inline-block;
-      visibility: visible;
-    }
-    .distill-site-nav.responsive .algolia-autocomplete .aa-dropdown-menu {
-      margin-left: 0;
-      width: 400px;
-      max-height: 400px;
-    }
-  }
-
-  .algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
-    width: 90%;
-    outline: none;
-    border: none;
-  }
-
-  .algolia-autocomplete .aa-hint {
-    color: #999;
-  }
-  .algolia-autocomplete .aa-dropdown-menu {
-    width: 550px;
-    max-height: 70vh;
-    overflow-x: visible;
-    overflow-y: scroll;
-    padding: 5px;
-    margin-top: 3px;
-    margin-left: -150px;
-    background-color: #fff;
-    border-radius: 5px;
-    border: 1px solid #999;
-    border-top: none;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
-    cursor: pointer;
-    padding: 5px 4px;
-    border-bottom: 1px solid #eee;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion:last-of-type {
-    border-bottom: none;
-    margin-bottom: 2px;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item {
-    overflow: hidden;
-    font-size: 0.8em;
-    line-height: 1.4em;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item h3 {
-    font-size: 1rem;
-    margin-block-start: 0;
-    margin-block-end: 5px;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-description {
-    display: inline-block;
-    overflow: hidden;
-    height: 2.8em;
-    width: 80%;
-    margin-right: 4%;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview {
-    display: inline-block;
-    width: 15%;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img {
-    height: 3em;
-    width: auto;
-    display: none;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img[src] {
-    display: initial;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
-    background-color: #eee;
-  }
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
-    font-weight: bold;
-    font-style: normal;
-  }
-
-  </style>
-
-
   <!--/radix_placeholder_navigation_in_header-->
   <!--radix_placeholder_distill-->
 
@@ -2074,15 +1475,16 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
-  <script src="site_libs/popper-2.6.0/popper.min.js"></script>
-  <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
-  <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
-  <script src="site_libs/tippy-6.2.7/tippy.umd.min.js"></script>
-  <script src="site_libs/anchor-4.2.2/anchor.min.js"></script>
-  <script src="site_libs/bowser-1.9.3/bowser.min.js"></script>
-  <script src="site_libs/webcomponents-2.0.0/webcomponents.js"></script>
-  <script src="site_libs/distill-2.2.21/template.v2.js"></script>
+  <script src="pipe_files/header-attrs-2.21/header-attrs.js"></script>
+  <script src="pipe_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <script src="pipe_files/popper-2.6.0/popper.min.js"></script>
+  <link href="pipe_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="pipe_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="pipe_files/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="pipe_files/anchor-4.2.2/anchor.min.js"></script>
+  <script src="pipe_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="pipe_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="pipe_files/distill-2.2.21/template.v2.js"></script>
   <!--radix_placeholder_site_in_header-->
   <!--/radix_placeholder_site_in_header-->
 
@@ -2094,40 +1496,157 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"About this R Training","description":"This site is for the internal user of GPID team in the DECIS department of the \nWorld Bank. It does not contain sesnsible information but it also is intended \nfor internal use only.","authors":[]}
+{"title":"How to use the Pipe","description":"Understand the difference between the magritr pipe and the native pipe, and when \nto use each. Understand when it is better to use the pipe rather than regular \nBase R syntax.","authors":[{"author":"R.Andres Castaneda","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2023-05-09T00:00:00.000-04:00","citationText":"Castaneda, 2023"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
 <!--radix_placeholder_navigation_before_body-->
-<header class="header header--fixed" role="banner">
-<nav class="distill-site-nav distill-site-header">
-<div class="nav-left">
-<a href="index.html" class="title">R Training for GPID Team</a>
-<input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
-</div>
-<div class="nav-right">
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
-</div>
-</nav>
-</header>
 <!--/radix_placeholder_navigation_before_body-->
 <!--radix_placeholder_site_before_body-->
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>About this R Training</h1>
+<h1>How to use the Pipe</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>This site is for the internal user of GPID team in the DECIS department of the
-World Bank. It does not contain sesnsible information but it also is intended
-for internal use only.</p></p>
+<p><p>Understand the difference between the magritr pipe and the native pipe, and when
+to use each. Understand when it is better to use the pipe rather than regular
+Base R syntax.</p></p>
 </div>
 
+<div class="d-byline">
+  
+  R.Andres Castaneda
+  
+<br/>2023-05-09
+</div>
 
 <div class="d-article">
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#packages" id="toc-packages">Packages</a>
+<ul>
+<li><a href="#loading-and-attaching" id="toc-loading-and-attaching">loading and attaching</a></li>
+<li><a href="#when-to-attach" id="toc-when-to-attach">When to attach</a></li>
+</ul></li>
+<li><a href="#main-idea-of-the-pipe" id="toc-main-idea-of-the-pipe">Main idea of the pipe</a></li>
+<li><a href="#sources" id="toc-sources">sources</a></li>
+</ul>
+</nav>
+</div>
+<h1 id="packages">Packages</h1>
+<h2 id="loading-and-attaching">loading and attaching</h2>
+<p>There is an important difference between loading and attaching a package.</p>
+<ul>
+<li><p>Loading refers to put all the components of a package available in memory ( code, data, and any DLLs; register S3 and S4 methods). However, those components are not in the search the <strong>search path</strong>, which is equivalent to the <strong>ado path</strong> in Stata. This is way, we need to call the function of loaded package with <code>::</code>. If the packages has not been loaded, using <code>::</code> loads the package.</p></li>
+<li><p>Attaching loads the package and makes it available in the search path. You do it using <code>library()</code> or <code>require()</code>. When it is attached, you don’t need to use <code>::</code>, but you can.</p></li>
+</ul>
+<p>Read more <a href="https://r-pkgs.org/dependencies-mindset-background.html#sec-dependencies-attach-vs-load">here</a>, R-Packages book.</p>
+<h2 id="when-to-attach">When to attach</h2>
+<p>Attaching has the advantage of not using <code>::</code>, but when you use too many packages, it is difficult to know what function comes from what package.</p>
+<p>I attach when I am using a package that I need all the time. For example, <code>tidyverse</code> or <code>data.table</code>. However, try to always use <code>::</code> because the code is clearer and there is no penalty in speed (minimum).</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>flights</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>dest</span> <span class='op'>==</span> <span class='st'>"IAH"</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>speed <span class='op'>=</span> <span class='va'>distance</span> <span class='op'>/</span> <span class='va'>air_time</span> <span class='op'>*</span> <span class='fl'>60</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>year</span><span class='op'>:</span><span class='va'>day</span>, <span class='va'>dep_time</span>, <span class='va'>carrier</span>, <span class='va'>flight</span>, <span class='va'>speed</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span><span class='op'>(</span><span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/desc.html'>desc</a></span><span class='op'>(</span><span class='va'>speed</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span></span>
+<span><span class='va'>flights</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>dest</span> <span class='op'>==</span> <span class='st'>"IAH"</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'>mutate</span><span class='op'>(</span>speed <span class='op'>=</span> <span class='va'>distance</span> <span class='op'>/</span> <span class='va'>air_time</span> <span class='op'>*</span> <span class='fl'>60</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'>select</span><span class='op'>(</span><span class='va'>year</span><span class='op'>:</span><span class='va'>day</span>, <span class='va'>dep_time</span>, <span class='va'>carrier</span>, <span class='va'>flight</span>, <span class='va'>speed</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'>arrange</span><span class='op'>(</span><span class='fu'>desc</span><span class='op'>(</span><span class='va'>speed</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<p>If you are developing packages, you <strong>cannot</strong> attach packages. You always have to use <code>::</code></p>
+<h1 id="main-idea-of-the-pipe">Main idea of the pipe</h1>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># load libraries that we will need</span></span>
+<span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/hadley/nycflights13'>nycflights13</a></span><span class='op'>)</span> <span class='co'># data or use library(help = "datasets")</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://r-datatable.com'>data.table</a></span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<p>We need to talk first about frames. Let’s go to Stata first.</p>
+<p>At the most basic level, the pipe is a syntax transformation in which you separate the argument from the function</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>x</span> <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span></span>
+<span></span>
+<span><span class='co'># from this</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] 5.5</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># to this </span></span>
+<span></span>
+<span><span class='va'>x</span> <span class='op'>|&gt;</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] 5.5</code></pre>
+</div>
+<p>But it by itself is not super useful. You see the real power when you work with dataframes</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># so you go from this</span></span>
+<span><span class='va'>flights1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>flights</span>, <span class='va'>dest</span> <span class='op'>==</span> <span class='st'>"IAH"</span><span class='op'>)</span></span>
+<span><span class='va'>flights2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span><span class='va'>flights1</span>, speed <span class='op'>=</span> <span class='va'>distance</span> <span class='op'>/</span> <span class='va'>air_time</span> <span class='op'>*</span> <span class='fl'>60</span><span class='op'>)</span></span>
+<span><span class='va'>flights3</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>flights2</span>, <span class='va'>year</span><span class='op'>:</span><span class='va'>day</span>, <span class='va'>dep_time</span>, <span class='va'>carrier</span>, <span class='va'>flight</span>, <span class='va'>speed</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span><span class='op'>(</span><span class='va'>flights3</span>, <span class='fu'><a href='https://dplyr.tidyverse.org/reference/desc.html'>desc</a></span><span class='op'>(</span><span class='va'>speed</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span></span>
+<span><span class='co'># or this</span></span>
+<span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span><span class='op'>(</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span></span>
+<span>    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span></span>
+<span>      <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>flights</span>, <span class='va'>dest</span> <span class='op'>==</span> <span class='st'>"IAH"</span><span class='op'>)</span>,</span>
+<span>      speed <span class='op'>=</span> <span class='va'>distance</span> <span class='op'>/</span> <span class='va'>air_time</span> <span class='op'>*</span> <span class='fl'>60</span></span>
+<span>    <span class='op'>)</span>,</span>
+<span>    <span class='va'>year</span><span class='op'>:</span><span class='va'>day</span>, <span class='va'>dep_time</span>, <span class='va'>carrier</span>, <span class='va'>flight</span>, <span class='va'>speed</span></span>
+<span>  <span class='op'>)</span>,</span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/desc.html'>desc</a></span><span class='op'>(</span><span class='va'>speed</span><span class='op'>)</span></span>
+<span><span class='op'>)</span></span>
+<span></span>
+<span></span>
+<span><span class='co'># to this</span></span></code></pre>
+</div>
+</div>
+<p>To this.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>flights</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>dest</span> <span class='op'>==</span> <span class='st'>"IAH"</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>speed <span class='op'>=</span> <span class='va'>distance</span> <span class='op'>/</span> <span class='va'>air_time</span> <span class='op'>*</span> <span class='fl'>60</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>year</span><span class='op'>:</span><span class='va'>day</span>, <span class='va'>dep_time</span>, <span class='va'>carrier</span>, <span class='va'>flight</span>, <span class='va'>speed</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span><span class='op'>(</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/desc.html'>desc</a></span><span class='op'>(</span><span class='va'>speed</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code># A tibble: 7,198 x 7
+    year month   day dep_time carrier flight speed
+   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt; &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt;
+ 1  2013     7     9      707 UA         226  522.
+ 2  2013     8    27     1850 UA        1128  521.
+ 3  2013     8    28      902 UA        1711  519.
+ 4  2013     8    28     2122 UA        1022  519.
+ 5  2013     6    11     1628 UA        1178  515.
+ 6  2013     8    27     1017 UA         333  515.
+ 7  2013     8    27     1205 UA        1421  515.
+ 8  2013     8    27     1758 UA         302  515.
+ 9  2013     9    27      521 UA         252  515.
+10  2013     8    28      625 UA         559  515.
+# i 7,188 more rows</code></pre>
+</div>
+<h1 id="sources">sources</h1>
+<ul>
+<li>This post in <a href="https://stackoverflow.com/a/72086492/11472481">stackoverflow</a></li>
+<li>This <a href="https://ivelasq.rbind.io/blog/understanding-the-r-pipe/">blog</a> by Isabella Velásquez. It is outdated because it is based in R 4.1, but it is still useful.</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

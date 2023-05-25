@@ -1,0 +1,125 @@
+---
+title: How to use the Pipe
+description: |
+  Understand the difference between the magritr pipe and the native pipe, and when 
+  to use each. Understand when it is better to use the pipe rather than regular 
+  Base R syntax. 
+author: R.Andres Castaneda
+date: '2023-05-09'
+output:
+  distill::distill_article:
+    self_contained: false
+    toc: true
+    toc_depth: 3
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+# Packages
+
+## loading and attaching
+
+There is an important difference between loading and attaching a package.
+
+-   Loading refers to put all the components of a package available in memory ( code, data, and any DLLs; register S3 and S4 methods). However, those components are not in the search the **search path**, which is equivalent to the **ado path** in Stata. This is way, we need to call the function of loaded package with `::`. If the packages has not been loaded, using `::` loads the package.
+
+-   Attaching loads the package and makes it available in the search path. You do it using `library()` or `require()`. When it is attached, you don't need to use `::`, but you can.
+
+Read more [here](https://r-pkgs.org/dependencies-mindset-background.html#sec-dependencies-attach-vs-load), R-Packages book.
+
+## When to attach
+
+Attaching has the advantage of not using `::`, but when you use too many packages, it is difficult to know what function comes from what package.
+
+I attach when I am using a package that I need all the time. For example, `tidyverse` or `data.table`. However, try to always use `::` because the code is clearer and there is no penalty in speed (minimum).
+
+```{r, eval=FALSE}
+flights |> 
+  dplyr::filter(dest == "IAH") |> 
+  dplyr::mutate(speed = distance / air_time * 60) |> 
+  dplyr::select(year:day, dep_time, carrier, flight, speed) |> 
+  dplyr::arrange(dplyr::desc(speed))
+
+
+flights |> 
+  filter(dest == "IAH") |> 
+  mutate(speed = distance / air_time * 60) |> 
+  select(year:day, dep_time, carrier, flight, speed) |> 
+  arrange(desc(speed))
+
+```
+
+If you are developing packages, you **cannot** attach packages. You always have to use `::`
+
+# Main idea of the pipe
+
+```{r}
+# load libraries that we will need
+
+library(nycflights13) # data or use library(help = "datasets")
+library(tidyverse)
+library(data.table)
+
+```
+
+We need to talk first about frames. Let's go to Stata first.
+
+At the most basic level, the pipe is a syntax transformation in which you separate the argument from the function
+
+```{r}
+x = 1:10
+
+# from this
+mean(x)
+
+# to this 
+
+x |> mean()
+```
+
+But it by itself is not super useful. You see the real power when you work with dataframes
+
+```{r, eval=FALSE}
+# so you go from this
+flights1 <- filter(flights, dest == "IAH")
+flights2 <- mutate(flights1, speed = distance / air_time * 60)
+flights3 <- select(flights2, year:day, dep_time, carrier, flight, speed)
+arrange(flights3, desc(speed))
+
+
+# or this
+arrange(
+  select(
+    mutate(
+      filter(flights, dest == "IAH"),
+      speed = distance / air_time * 60
+    ),
+    year:day, dep_time, carrier, flight, speed
+  ),
+  desc(speed)
+)
+
+
+# to this
+
+
+```
+
+To this.
+
+```{r}
+flights |> 
+  filter(dest == "IAH") |> 
+  mutate(speed = distance / air_time * 60) |> 
+  select(year:day, dep_time, carrier, flight, speed) |> 
+  arrange(desc(speed))
+```
+
+# sources
+
+-   This post in [stackoverflow](https://stackoverflow.com/a/72086492/11472481)
+-   This [blog](https://ivelasq.rbind.io/blog/understanding-the-r-pipe/) by Isabella Velásquez. It is outdated because it is based in R 4.1, but it is still useful.
