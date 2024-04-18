@@ -15,6 +15,12 @@ c <- b
 d <- 1:10
 
 
+# ANSWER
+list_of_names <- list(a, b, c, d)
+obj_addrs(list_of_names)
+
+
+
 
 #  b. Do these functions point to the same function object?
 mean
@@ -23,28 +29,78 @@ get("mean")
 evalq(mean)
 match.fun("mean")
 
+# ANSWER
+mean_functions <- list(
+  mean,
+  base::mean,
+  get("mean"),
+  evalq(mean),
+  match.fun("mean")
+)
+
+unique(obj_addrs(mean_functions))
+
+
+
+
+
+
+
 #  c. By default, base R data import functions,
 #      like read.csv(), will automatically convert
 #      non-syntactic names to syntactic ones.
 #      Why might this be problematic? What option
 #      allows you to suppress this behaviour?
 
+# ANSWER
+
+# Column names are often data, and the underlying make.names() transformation is non-invertible,
+# so the default behaviour corrupts data. To avoid this, set check.names = FALSE.
+
+
 #  d. What rules does make.names() use to convert
 #      non-syntactic names into syntactic ones?
+
+
+# ANSWER
+make.names("")
+make.names(".1")
+make.names("non-valid")
+make.names("@")
+make.names("  R")
 
 #  e. I slightly simplified the rules that govern
 #     syntactic names. Why is .123e1 not a syntactic name?
 #     Read `?make.names` for the full details.
+
+# ANSWER
+make.names("if")
+
+#-------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
 
 
 # 2. Exercises
 
 # a. Why is `tracemem(1:10)` not useful?
 
+
+# ANSWER
+
+
+
 # b. Explain why tracemem() shows two copies when you run this code
 x <- c(1L, 2L, 3L)
 tracemem(x)
-x[[3]] <- 4
+x[[3]] <- 4L
+untracemem(x)
+# ANSWER
+# integer changed to double
+x <- c(1L, 2L, 3L)
+tracemem(x)
+x[[3]] <- 4L
+untracemem(x)
 
 # c. Sketch out the relationship between the following objects:
 a <- 1:10
@@ -55,6 +111,11 @@ c <- list(b, a, 1:10)
 x <- list(1:10)
 x[[2]] <- x
 x
+
+
+#-------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
 
 
 # 3. Exercises
