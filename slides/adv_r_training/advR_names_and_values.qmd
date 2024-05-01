@@ -9,23 +9,23 @@ editor: visual
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-
 ## What's in a name?
 
-"What's in a name? That which we call a rose, by any other word would smell as sweet”
+"What's in a name? That which we call a rose, by any other word would smell as sweet"
 
-1. Distinction between names and values
-2. What happens when you make a *copy*?
-3. How much memory does an object occupy?
-4. Exceptions to *copy-on-modify*
-5. Collecting your garbage
+1.  Distinction between names and values
+2.  What happens when you make a *copy*?
+3.  How much memory does an object occupy?
+4.  Exceptions to *copy-on-modify*
+5.  Collecting your garbage
 
 Now, let's install `{lobstr}`
-```{r}
 
+```{r}
 # Old school
 if (!require(lobstr)) install.packages("lobstr")
 library(lobstr)
+
 # Using `{pacman}` (can use `{pak}`)
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(lobstr)
@@ -41,14 +41,16 @@ x <- c(1, 2, 3)
 
 This does two things:
 
-1. Create an object which is a numeric atomic vector `c(1, 2, 3)`
-2. Bind that object to a name, `x`
+1.  Create an object which is a numeric atomic vector `c(1, 2, 3)`
+2.  Bind that object to a name, `x`
 
 ```{r}
 y <- x
 identical(x, y)
 ```
+
 They are *equal* but is this really an efficient use of memory?
+
 ```{r}
 # use `{lobstr}`
 obj_addr(x)
@@ -56,6 +58,7 @@ obj_addr(y)
 ```
 
 What about functions?
+
 ```{r}
 eg_func <- \(){paste("small example function")}
 eg_func2 <- eg_func
@@ -63,12 +66,20 @@ eg_func2()
 ```
 
 ## What's in a name?
+
 ```{r}
+# create objects
 _abc   <- 1
 `_abc` <- 1
+
+# let's see
 _abc
 `_abc`
+
+# unbind
 rm(list = ls())
+
+# what about ""?
 "_abc" <- 1
 "_abc"
 `_abc`
@@ -76,11 +87,12 @@ rm(list = ls())
 
 ## 1. Exercises
 
-Have a look at the script and textbook. 
+Have a look at the script and textbook.
 
 ## Copy-on-modify
 
 What happens below?
+
 ```{r}
 x <- c(1, 2, 3)
 y <- x
@@ -90,21 +102,23 @@ identical(x, y)
 ```
 
 Now compare memory
+
 ```{r}
 obj_addr(x)
 obj_addr(y)
 ```
 
-This is because R objects are unchangeable, or *immutable*.
-Note, the user-side may be unaffected, but performance greatly affected.
-For example
+This is because R objects are unchangeable, or *immutable*. Note, the user-side may be unaffected, but performance greatly affected. For example
+
 ```{r}
 x[[3]] <- 5
 obj_addr(x)
 ```
 
 ### Trace memory
+
 It is important to know when an object is copied.
+
 ```{r}
 x <- c(1, 2, 3)
 cat(base::tracemem(x), 
@@ -117,13 +131,16 @@ y[[3]] <- 4L
 obj_addr(x)
 obj_addr(y)
 ```
+
 What happens if we modify `y` again?
+
 ```{r}
 y[[2]] <- 10
 untracemem(x)
 ```
 
 ### Function calls
+
 ```{r}
 f1 <- function(a) {
   a
@@ -152,6 +169,7 @@ untracemem(x)
 ```
 
 ### Lists
+
 Lists are more complex because they can store *different objects*.
 
 ```{r}
@@ -172,18 +190,18 @@ lapply(l2, obj_addr)
 The figures in the textbook are great for intuition.
 
 To compare the lists in a more user-friendly way:
+
 ```{r}
 ref(l1, l2)
 ```
 
 ### Data frames and vectors
 
-Data frames are actually formatted lists (of vectors).
-This is best shown visually. Let's look at the textbook.
+Data frames are actually formatted lists (of vectors). This is best shown visually. Let's look at the textbook.
 
 ### 2. Exercises
 
-Have a look at the script and textbook. 
+Have a look at the script and textbook.
 
 ## Object Size
 
@@ -195,24 +213,27 @@ obj_size(ggplot2::diamonds)
 ```
 
 Lists only contain references to underlying objects
+
 ```{r}
 x <- runif(1e6)
 obj_size(x)
 ```
 
 So what will happen here?
+
 ```{r}
 y <- list(x, x, x)
 obj_size(y)
 ```
 
 We can confirm
+
 ```{r}
 obj_size(list(NULL, NULL, NULL))
 ```
 
-We looked at the characteristics of character vectors.
-Now what about their memory?
+We looked at the characteristics of character vectors. Now what about their memory?
+
 ```{r}
 banana <- "bananas bananas bananas"
 obj_size(banana)
@@ -227,7 +248,8 @@ Also, $$obj_size(x) + obj_size(y) \neq obj_size(x, y)$$
 obj_size(x, y) # why?
 ```
 
-R has an *alternative representation* for certain objects (>= R 3.5.0)
+R has an *alternative representation* for certain objects (\>= R 3.5.0)
+
 ```{r}
 obj_size(c(1, 2, 3))
 obj_size(c(1, 2, 3, 4, 5, 6, 7, 8, 9))
@@ -236,6 +258,7 @@ obj_size(c(1, 2))
 ```
 
 That allows very large sequences to be stored very efficiently.
+
 ```{r}
 obj_size(1:3)
 obj_size(1:1e3)
@@ -244,24 +267,23 @@ obj_size(1:1e9)
 ```
 
 But be careful with this, because it might not always work the way you think:
+
 ```{r}
 obj_size(c(1:3))
 obj_size(c(1:1e3))
 obj_size(c(1:1e6))
 ```
 
-
 ### 3. Exercises
 
-Have a look at the script and textbook. 
-
+Have a look at the script and textbook.
 
 ## Modify-in-place
 
 According to the copy-in-place principles of R, modifying an object usually creates a copy. There are two exceptions:
 
-1. Objects with a *single binding*
-2. Environments (a special type of object in chapter 7)
+1.  Objects with a *single binding*
+2.  Environments (a special type of object in chapter 7)
 
 ```{r}
 v       <- c(1, 2, 3)
@@ -284,9 +306,7 @@ v[3] <- 4
 untracemem(v)
 ```
 
-
 Let's investigate using for loops, which have a reputation for being very slow in R.
-
 
 ```{r}
 x       <- data.frame(matrix(runif(5 * 1e4), ncol = 5))
@@ -303,6 +323,7 @@ for (i in seq_along(medians)) {
 ```
 
 Looking into it a bit deeper shows that each loop copies the data frame.
+
 ```{r}
 cat(tracemem(x), "\n")
 
@@ -311,7 +332,6 @@ for (i in 1:5) {
 }
 untracemem(x)
 ```
-
 
 ```{r}
 y <- as.list(x)
@@ -322,21 +342,22 @@ for (i in 1:5) {
 }
 ```
 
-
 ## The garbage man
 
 First
+
 ```{r}
 x <- 1:3
 ```
 
 Now
+
 ```{r}
 x <- 2:4
 ```
 
-What happens in the Environment pane? What happens in memory?
-What happens when we remove `x`?
+What happens in the Environment pane? What happens in memory? What happens when we remove `x`?
+
 ```{r}
 rm(x)
 # or even
@@ -344,6 +365,7 @@ rm(list = ls())
 ```
 
 We can use the garbage collector to trace all objects reachable from the global environment, and then all objects reachable from those objects. It deletes unused objects.
+
 ```{r}
 gc()
 ```
@@ -351,7 +373,7 @@ gc()
 In practice, it's rarely necessary to run because R runs it automatically.
 
 We can see how much memory is used
+
 ```{r}
 mem_used()
 ```
-
